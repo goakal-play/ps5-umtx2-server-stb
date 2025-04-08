@@ -27,5 +27,28 @@ sudo apt install dnsmasq hostapd net-tools -y
 
 ### Clone the PS5 exploit host repository.
 ```bash
-git clone https://github.com/idlesauce/umtx2.git umtx2/
+sudo nano /etc/systemd/system/static-ip.service
+```
+
+### Static IP Configuration.
+```bash
+cat << 'EOF' | sudo tee /etc/systemd/system/static-ip.service > /dev/null
+[Unit]
+Description=Set Static IP Address and restart services
+After=network-online.target hostapd.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/set-static-ip.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+### Testtt.
+```bash
+test
 ```
