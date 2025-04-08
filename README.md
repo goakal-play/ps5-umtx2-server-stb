@@ -33,7 +33,7 @@ sudo systemctl disable systemd-resolved
 
 ### Clone the PS5 exploit host repository.
 ```bash
-sudo nano /etc/systemd/system/static-ip.service
+git clone https://github.com/idlesauce/umtx2.git umtx2/
 ```
 
 ### Create a systemd service to assign a static IP.
