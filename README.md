@@ -131,3 +131,69 @@ EOF
 sudo systemctl restart dnsmasq
 ```
 
+### Systemd Services for custom_host.py (Server)
+```bash
+cat << 'EOF' | sudo tee /etc/systemd/system/ps5-host.service > /dev/null
+[Unit]
+Description=PS5 Exploit Host
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /root/umtx2/host.py
+WorkingDirectory=/root/umtx2
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+### Fake DNS Configuration
+```bash
+cat << 'EOF' | sudo tee /etc/systemd/system/fakedns.service
+ > /dev/null
+[Unit]
+Description=Fake DNS Server
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /root/umtx2/fakedns.py -c /root/umtx2/dns.conf
+WorkingDirectory=/root/umtx2
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+### Change dns.conf default IP to static STB IP
+```bash
+cat << 'EOF' | sudo tee /root/umtx2/dns.conf
+ > /dev/null
+A manuals.playstation.net 10.1.1.1
+EOF
+```
+
+### Enable and Start All Services
+```bash
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+sudo systemctl enable ps5-host.service
+sudo systemctl enable fakedns.service
+sudo systemctl start ps5-host.service
+sudo systemctl start ps5-host-ssl.service
+sudo systemctl start fakedns.service
+```
+
+### Reboot System
+```bash
+sudo reboot
+```
+
+### Check Service Status
+```bash
+sudo systemctl status ps5-host.service
+sudo systemctl status fakedns.service
+sudo systemctl status dnsmasq.service
+sudo systemctl status static-ip.service
+```
