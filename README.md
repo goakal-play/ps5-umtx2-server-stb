@@ -16,3 +16,16 @@ This fork adapts the exploit for automated and persistent deployment on STB/Armb
 - Lightweight, optimized for STB devices
 
 **Note:** This project requires the STB (Set-Top Box) to be rooted first. After rooting, Armbian must be successfully installed on the device before proceeding with the setup.
+
+# Setup Instructions
+
+## Install Dependencies
+```bash
+sudo apt update
+sudo apt install dnsmasq hostapd net-tools -y
+```
+
+## Clone the PS5 exploit host repository.
+```bash
+git clone https://github.com/idlesauce/umtx2.git umtx2/
+```
