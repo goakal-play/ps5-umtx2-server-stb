@@ -31,7 +31,7 @@ sudo systemctl stop systemd-resolved
 sudo systemctl disable systemd-resolved
 ```
 
-### Clone the PS5 exploit host repository.
+### Clone idlesauce PS5 UMTX2 Jailbreak repository.
 ```bash
 git clone https://github.com/idlesauce/umtx2.git umtx2/
 ```
@@ -181,7 +181,6 @@ sudo systemctl daemon-reload
 sudo systemctl enable ps5-host.service
 sudo systemctl enable fakedns.service
 sudo systemctl start ps5-host.service
-sudo systemctl start ps5-host-ssl.service
 sudo systemctl start fakedns.service
 ```
 
@@ -197,5 +196,3 @@ sudo systemctl status fakedns.service
 sudo systemctl status dnsmasq.service
 sudo systemctl status static-ip.service
 ```
-
-### Tesst
