@@ -25,12 +25,18 @@ sudo apt update
 sudo apt install dnsmasq hostapd net-tools -y
 ```
 
+### Stop systemd-resolved to avoid conflicts with custom DNS.
+```bash
+sudo systemctl stop systemd-resolved
+sudo systemctl disable systemd-resolved
+```
+
 ### Clone the PS5 exploit host repository.
 ```bash
 sudo nano /etc/systemd/system/static-ip.service
 ```
 
-### Static IP Configuration.
+### Create a systemd service to assign a static IP.
 ```bash
 cat << 'EOF' | sudo tee /etc/systemd/system/static-ip.service > /dev/null
 [Unit]
@@ -48,7 +54,80 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### Testtt.
+### Create static IP script executed by service above.
 ```bash
-test
+cat << 'EOF' | sudo tee nano /usr/local/bin/set-static-ip.sh > /dev/null
+#!/bin/bash
+for i in {1..10}; do
+  if ip link show wlan0 > /dev/null 2>&1; then
+    break
+  fi
+  sleep 1
+done
+ip link set wlan0 up
+ifconfig wlan0 10.1.1.1 netmask 255.255.255.0 up
+systemctl restart hostapd
+systemctl restart dnsmasq
+EOF
 ```
+
+### Make it executable and enable the service.
+```bash
+sudo chmod +x /usr/local/bin/set-static-ip.sh
+sudo systemctl daemon-reload
+sudo systemctl enable static-ip.service
+sudo systemctl start static-ip.service
+```
+
+### Hostapd Configuration (WiFi Access Point)
+```bash
+cat << 'EOF' | sudo tee nano /etc/hostapd/hostapd.conf > /dev/null
+interface=wlan0
+ssid=PS5_UMTX2
+hw_mode=g
+channel=6
+auth_algs=1
+wpa=2
+wpa_passphrase=12345678
+wpa_key_mgmt=WPA-PSK
+rsn_pairwise=CCMP
+EOF
+```
+
+### Link the config file Hostapd
+```bash
+cat <<EOF | sudo tee -a /etc/default/hostapd > /dev/null
+DAEMON_CONF="/etc/hostapd/hostapd.conf"
+EOF
+```
+
+### Enable and start Hostapd
+```bash
+sudo systemctl unmask hostapd
+sudo systemctl enable hostapd
+sudo systemctl restart hostapd
+```
+
+### dnsmasq Configuration (DHCP & DNS)
+```bash
+cat << 'EOF' | sudo tee -a /etc/dnsmasq.conf > /dev/null
+interface=wlan0
+bind-interfaces
+port=0
+dhcp-range=10.1.1.2,10.1.1.9,7d
+dhcp-option=3,10.1.1.1
+dhcp-option=6,10.1.1.1
+bogus-priv
+no-resolv
+no-hosts
+no-poll
+log-dhcp
+log-queries
+EOF
+```
+
+### Restart dnsmasq service
+```bash
+sudo systemctl restart dnsmasq
+```
+
