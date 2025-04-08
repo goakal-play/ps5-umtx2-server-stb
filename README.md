@@ -149,7 +149,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### Fake DNS Configuration
+### Systemd Services for FakeDNS
 ```bash
 cat << 'EOF' | sudo tee /etc/systemd/system/fakedns.service
  > /dev/null
