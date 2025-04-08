@@ -25,15 +25,16 @@ sudo apt update
 sudo apt install dnsmasq hostapd net-tools -y
 ```
 
+### Clone idlesauce PS5 UMTX2 Jailbreak repository.
+```bash
+git clone https://github.com/idlesauce/umtx2.git umtx2/
+wget --header="Authorization: token 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" https://raw.githubusercontent.com/goakal-play/ps5-umtx2-server-stb/main/custom_host.py -P umtx2/
+```
+
 ### Stop systemd-resolved to avoid conflicts with custom DNS.
 ```bash
 sudo systemctl stop systemd-resolved
 sudo systemctl disable systemd-resolved
-```
-
-### Clone idlesauce PS5 UMTX2 Jailbreak repository.
-```bash
-git clone https://github.com/idlesauce/umtx2.git umtx2/
 ```
 
 ### Create a systemd service to assign a static IP.
@@ -96,7 +97,7 @@ EOF
 
 ### Link the config file Hostapd
 ```bash
-cat <<EOF | sudo tee -a /etc/default/hostapd > /dev/null
+cat <<EOF | sudo tee /etc/default/hostapd > /dev/null
 DAEMON_CONF="/etc/hostapd/hostapd.conf"
 EOF
 ```
@@ -110,7 +111,7 @@ sudo systemctl restart hostapd
 
 ### dnsmasq Configuration (DHCP & DNS)
 ```bash
-cat << 'EOF' | sudo tee -a /etc/dnsmasq.conf > /dev/null
+cat << 'EOF' | sudo tee /etc/dnsmasq.conf > /dev/null
 interface=wlan0
 bind-interfaces
 port=0
@@ -140,7 +141,7 @@ After=network.target
 
 [Service]
 ExecStart=/usr/bin/python3 /root/umtx2/custom_host.py
-WorkingDirectory=/root/umtx2/
+WorkingDirectory=/root/umtx2
 Restart=always
 User=root
 
@@ -151,8 +152,7 @@ EOF
 
 ### Systemd Services for FakeDNS
 ```bash
-cat << 'EOF' | sudo tee /etc/systemd/system/fakedns.service
- > /dev/null
+cat << 'EOF' | sudo tee /etc/systemd/system/fakedns.service > /dev/null
 [Unit]
 Description=Fake DNS Server
 After=network.target
@@ -168,8 +168,7 @@ EOF
 ```
 ### Change dns.conf default IP to static STB IP
 ```bash
-cat << 'EOF' | sudo tee /root/umtx2/dns.conf
- > /dev/null
+cat << 'EOF' | sudo tee /root/umtx2/dns.conf > /dev/null
 A manuals.playstation.net 10.1.1.1
 EOF
 ```
