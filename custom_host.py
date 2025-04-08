@@ -51,4 +51,4 @@ def run_https():
 
 # Jalankan HTTP dan HTTPS secara paralel
 threading.Thread(target=run_http, daemon=True).start()
-run_https()  # Biarkan HTTPS di foreground agar log tampil dan systemd bisa monitor
+run_https()  
