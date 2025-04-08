@@ -139,8 +139,8 @@ Description=PS5 Exploit Host
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 /root/umtx2/host.py
-WorkingDirectory=/root/umtx2
+ExecStart=/usr/bin/python3 /root/custom_host.py
+WorkingDirectory=/root
 Restart=always
 User=root
 
