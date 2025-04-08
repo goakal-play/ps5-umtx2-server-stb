@@ -12,9 +12,7 @@ This fork adapts the exploit for automated and persistent deployment on STB/Armb
 
 - Auto-start server on boot using systemd
 - DNS spoofing and rebind attack handling
-- HTTPS support for `manuals.playstation.net` redirection
+- Support HTTP for esphost app & HTTPS for user guide PS5 menu redirection
 - Lightweight, optimized for STB devices
 
-## Usage
-
-[Add your setup and usage guide here]
+**Note:** This project requires the STB (Set-Top Box) to be rooted first. After rooting, Armbian must be successfully installed on the device before proceeding with the setup.
