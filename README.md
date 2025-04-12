@@ -17,7 +17,7 @@ This fork adapts the exploit for automated and persistent deployment on STB/Armb
 
 **Note:** This project requires the STB (Set-Top Box) to be rooted first. After rooting, Armbian must be successfully installed on the device before proceeding with the setup.
 
-**Note:** Full Tuturoial : Coming soon on [my YouTube channel](https://www.youtube.com/@goplayfull). 
+**Note:** Full Tutorial : Coming soon on [my YouTube channel](https://www.youtube.com/@goplayfull). 
 
 ## Setup Instructions
 
