@@ -1,4 +1,4 @@
-# PS5 UMTX2 Exploit Host Server for STB/Armbian
+# PS5 UMTX2 Exploit Host Server for Tv Box/Armbian
 
 This project provides a self-hosted exploit server for PS5, designed to run on STB devices or any system using Armbian. It includes support for DNS spoofing, rebind attacks, automatic caching, and serves the exploit through both HTTP and HTTPS.
 
