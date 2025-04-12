@@ -13,8 +13,11 @@ This fork adapts the exploit for automated and persistent deployment on STB/Armb
 - Auto-start server on boot using systemd
 - DNS spoofing and rebind attack handling
 - Lightweight, optimized for STB devices
+- The following firmwares are currently supported: 1.00 to 5.50
 
 **Note:** This project requires the STB (Set-Top Box) to be rooted first. After rooting, Armbian must be successfully installed on the device before proceeding with the setup.
+
+**Note:** Full Tuturoial : Coming soon on [my YouTube channel](https://www.youtube.com/@goplayfull). 
 
 ## Setup Instructions
 
