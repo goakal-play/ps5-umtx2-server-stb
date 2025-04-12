@@ -168,6 +168,24 @@ EOF
 ```bash
 cat << 'EOF' | sudo tee /root/umtx2/dns.conf > /dev/null
 A manuals.playstation.net 10.1.1.1
+A umtx2.tv.box 10.1.1.1
+EOF
+```
+
+### Auto Shutdown Service
+```bash
+cat << 'EOF' | sudo tee /etc/systemd/system/autoshutdown.service > /dev/null
+[Unit]
+Description=Auto Shutdown
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sleep 600
+ExecStartPost=/sbin/shutdown -h now
+
+[Install]
+WantedBy=multi-user.target
 EOF
 ```
 
@@ -177,8 +195,10 @@ sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
 sudo systemctl enable ps5-host.service
 sudo systemctl enable fakedns.service
+sudo systemctl enable autoshutdown.service
 sudo systemctl start ps5-host.service
 sudo systemctl start fakedns.service
+sudo systemctl start autoshutdown.service
 ```
 
 ### Reboot System
