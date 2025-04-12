@@ -172,6 +172,30 @@ A umtx2.tv.box 10.1.1.1
 EOF
 ```
 
+### Enable and Start All Services
+```bash
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+sudo systemctl enable ps5-host.service
+sudo systemctl enable fakedns.service
+sudo systemctl start ps5-host.service
+sudo systemctl start fakedns.service
+```
+
+### Reboot System
+```bash
+sudo reboot
+```
+
+### Check Service Status
+```bash
+sudo systemctl status ps5-host.service
+sudo systemctl status fakedns.service
+sudo systemctl status dnsmasq.service
+sudo systemctl status static-ip.service
+sudo systemctl status autoshutdown.service
+```
+
 ### Auto Shutdown Service
 ```bash
 cat << 'EOF' | sudo tee /etc/systemd/system/autoshutdown.service > /dev/null
@@ -189,28 +213,8 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### Enable and Start All Services
+### Enable and Start Autoshutdown Service
 ```bash
-sudo systemctl daemon-reexec
-sudo systemctl daemon-reload
-sudo systemctl enable ps5-host.service
-sudo systemctl enable fakedns.service
 sudo systemctl enable autoshutdown.service
-sudo systemctl start ps5-host.service
-sudo systemctl start fakedns.service
 sudo systemctl start autoshutdown.service
-```
-
-### Reboot System
-```bash
-sudo reboot
-```
-
-### Check Service Status
-```bash
-sudo systemctl status ps5-host.service
-sudo systemctl status fakedns.service
-sudo systemctl status dnsmasq.service
-sudo systemctl status static-ip.service
-sudo systemctl status autoshutdown.service
 ```
