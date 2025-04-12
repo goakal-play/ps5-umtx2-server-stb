@@ -12,7 +12,6 @@ This fork adapts the exploit for automated and persistent deployment on STB/Armb
 
 - Auto-start server on boot using systemd
 - DNS spoofing and rebind attack handling
-- Support HTTP for esphost app & HTTPS for user guide PS5 menu redirection
 - Lightweight, optimized for STB devices
 
 **Note:** This project requires the STB (Set-Top Box) to be rooted first. After rooting, Armbian must be successfully installed on the device before proceeding with the setup.
@@ -28,7 +27,6 @@ sudo apt install dnsmasq hostapd net-tools -y
 ### Clone idlesauce PS5 UMTX2 Jailbreak repository.
 ```bash
 git clone https://github.com/idlesauce/umtx2.git umtx2/
-wget https://raw.githubusercontent.com/goakal-play/ps5-umtx2-server-stb/main/custom_host.py -P umtx2/
 ```
 
 ### Stop systemd-resolved to avoid conflicts with custom DNS.
