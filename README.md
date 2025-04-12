@@ -130,7 +130,7 @@ EOF
 sudo systemctl restart dnsmasq
 ```
 
-### Systemd Services for custom_host.py (Server)
+### Systemd Services for host.py (Server)
 ```bash
 cat << 'EOF' | sudo tee /etc/systemd/system/ps5-host.service > /dev/null
 [Unit]
@@ -138,7 +138,7 @@ Description=PS5 Exploit Host
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 /root/umtx2/custom_host.py
+ExecStart=/usr/bin/python3 /root/umtx2/host.py
 WorkingDirectory=/root/umtx2
 Restart=always
 User=root
