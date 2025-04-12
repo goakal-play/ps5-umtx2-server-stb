@@ -212,4 +212,5 @@ sudo systemctl status ps5-host.service
 sudo systemctl status fakedns.service
 sudo systemctl status dnsmasq.service
 sudo systemctl status static-ip.service
+sudo systemctl status autoshutdown.service
 ```
