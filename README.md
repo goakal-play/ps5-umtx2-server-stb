@@ -30,7 +30,7 @@ sudo apt install dnsmasq hostapd net-tools -y
 ### Clone idlesauce PS5 UMTX2 Jailbreak repository.
 ```bash
 git clone https://github.com/idlesauce/umtx2.git umtx2/
-wget https://raw.githubusercontent.com/goakal-play/ps5-umtx2-server-stb/main/udpate_cache.sh
+wget https://raw.githubusercontent.com/goakal-play/ps5-umtx2-server-stb/main/update._cache.sh
 wget https://raw.githubusercontent.com/goakal-play/ps5-umtx2-server-stb/main/dns.conf
 ```
 
@@ -75,9 +75,9 @@ systemctl restart dnsmasq
 EOF
 ```
 
-### Make it executable (include update_umtx2.sh) and enable the service 
+### Make it executable (include update._cache.sh) and enable the service 
 ```bash
-sudo chmod +x /usr/local/bin/set-static-ip.sh udpate_cache.sh
+sudo chmod +x /usr/local/bin/set-static-ip.sh update._cache.sh
 sudo systemctl daemon-reload
 sudo systemctl enable static-ip.service
 sudo systemctl start static-ip.service
