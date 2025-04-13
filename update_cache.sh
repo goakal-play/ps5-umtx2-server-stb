@@ -7,7 +7,7 @@
 show_menu() {
     clear
     echo "================================================"
-    echo "         PS5 UMTX2 Cache Updater                "
+    echo "        PS5 UMTX2 TvBox Cache Updater           "
     echo "================================================"
     echo "1) Update Exploit & Generate Appcache Manifest"
     echo "2) Generate Appcache Manifest only"

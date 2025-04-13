@@ -191,10 +191,9 @@ sudo systemctl status ps5-host.service
 sudo systemctl status fakedns.service
 sudo systemctl status dnsmasq.service
 sudo systemctl status static-ip.service
-sudo systemctl status autoshutdown.service
 ```
 
-### Auto Shutdown Service
+### Auto Shutdown Service (Optional)
 ```bash
 cat << 'EOF' | sudo tee /etc/systemd/system/autoshutdown.service > /dev/null
 [Unit]
@@ -203,7 +202,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/bin/bash -c 'sleep 600 && /sbin/shutdown -h now'
+ExecStart=/bin/bash -c 'sleep 1200 && /sbin/shutdown -h now'
 RemainAfterExit=no
 
 [Install]
