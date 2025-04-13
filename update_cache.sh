@@ -3,9 +3,6 @@
 # update_cache.sh
 # Script to update the PS5 UMTX2 exploit and generate the appcache manifest
 
-# Set the absolute path to the umtx2 directory
-UMTX2_DIR="/root/umtx2"
-
 # Function to display the menu
 show_menu() {
     clear
@@ -22,11 +19,11 @@ show_menu() {
 # Function to update the exploit
 update_exploit() {
     echo "[+] Removing existing 'umtx2' directory if it exists..."
-    rm -rf "$UMTX2_DIR"
+    rm -rf umtx2
     echo "[+] Cloning the 'umtx2' repository..."
-    git clone https://github.com/idlesauce/umtx2.git "$UMTX2_DIR"
+    git clone https://github.com/idlesauce/umtx2.git umtx2
     echo "[+] Running the appcache manifest generator..."
-    python3 "$UMTX2_DIR/appcache_manifest_generator.py"
+    python3 /root/umtx2/appcache_manifest_generator.py -d /root/umtx2/document/en/ps5
     echo "[✓] Update complete."
     echo "Press Enter to return to the menu..."
     read
@@ -34,14 +31,9 @@ update_exploit() {
 
 # Function to generate the appcache manifest
 generate_manifest() {
-    if [ -d "$UMTX2_DIR" ]; then
-        echo "[+] Running the appcache manifest generator..."
-        python3 "$UMTX2_DIR/appcache_manifest_generator.py"
-        echo "[✓] Generation complete."
-    else
-        echo "[!] 'umtx2' directory not found at $UMTX2_DIR."
-        echo "Please run 'Update Exploit' first to clone the repository."
-    fi
+    echo "[+] Running the appcache manifest generator..."
+    python3 /root/umtx2/appcache_manifest_generator.py -d /root/umtx2/document/en/ps5
+    echo "[✓] Generation complete."
     echo "Press Enter to return to the menu..."
     read
 }
