@@ -77,7 +77,7 @@ EOF
 
 ### Make it executable (include update_umtx2.sh) and enable the service 
 ```bash
-sudo chmod +x /usr/local/bin/set-static-ip.sh update_umtx2.sh
+sudo chmod +x /usr/local/bin/set-static-ip.sh udpate_cache.sh
 sudo systemctl daemon-reload
 sudo systemctl enable static-ip.service
 sudo systemctl start static-ip.service
