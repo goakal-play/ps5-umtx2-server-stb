@@ -30,7 +30,7 @@ sudo apt install dnsmasq hostapd net-tools -y
 ### Clone idlesauce PS5 UMTX2 Jailbreak repository.
 ```bash
 git clone https://github.com/idlesauce/umtx2.git umtx2/
-wget -O umtx2/update_umtx2.sh https://raw.githubusercontent.com/goakal-play/ps5-umtx2-server-stb/main/update_umtx2.sh
+wget https://raw.githubusercontent.com/goakal-play/ps5-umtx2-server-stb/main/update_umtx2.sh
 ```
 
 ### Stop systemd-resolved to avoid conflicts with custom DNS.
@@ -76,7 +76,7 @@ EOF
 
 ### Make it executable (include update_umtx2.sh) and enable the service 
 ```bash
-sudo chmod +x /usr/local/bin/set-static-ip.sh /umtx2/update_umtx2.sh
+sudo chmod +x /usr/local/bin/set-static-ip.sh update_umtx2.sh
 sudo systemctl daemon-reload
 sudo systemctl enable static-ip.service
 sudo systemctl start static-ip.service
@@ -160,7 +160,7 @@ Description=Fake DNS Server
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 /root/umtx2/fakedns.py -c /root/umtx2/dns.conf
+ExecStart=/usr/bin/python3 /root/umtx2/fakedns.py -c dns.conf
 WorkingDirectory=/root/umtx2
 Restart=always
 
@@ -170,7 +170,7 @@ EOF
 ```
 ### Change dns.conf default IP to static STB IP
 ```bash
-cat << 'EOF' | sudo tee /root/umtx2/dns.conf > /dev/null
+cat << 'EOF' | sudo tee dns.conf > /dev/null
 A manuals.playstation.net 10.1.1.1
 A umtx2.tv.box 10.1.1.1
 EOF
