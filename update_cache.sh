@@ -25,7 +25,8 @@ update_exploit() {
     echo "[+] Running the appcache manifest generator..."
     python3 /root/umtx2/appcache_manifest_generator.py -d /root/umtx2/document/en/ps5
     echo "[✓] Update complete."
-    echo "Press Enter to return to the menu..."
+    echo "Press Enter to reboot system..."
+    sudo reboot
     read
 }
 
