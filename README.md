@@ -30,7 +30,7 @@ sudo apt install dnsmasq hostapd net-tools -y
 ### Clone idlesauce PS5 UMTX2 Jailbreak repository.
 ```bash
 git clone https://github.com/idlesauce/umtx2.git umtx2/
-wget https://raw.githubusercontent.com/goakal-play/ps5-umtx2-server-stb/main/update_umtx2.sh
+wget -O umtx2/update_umtx2.sh https://raw.githubusercontent.com/goakal-play/ps5-umtx2-server-stb/main/update_umtx2.sh
 ```
 
 ### Stop systemd-resolved to avoid conflicts with custom DNS.
