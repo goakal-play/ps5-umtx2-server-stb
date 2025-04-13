@@ -202,9 +202,9 @@ Description=Auto Shutdown
 After=network.target
 
 [Service]
-Type=oneshot
-ExecStart=/bin/sleep 600
-ExecStartPost=/sbin/shutdown -h now
+Type=simple
+ExecStart=/bin/bash -c 'sleep 600 && /sbin/shutdown -h now'
+RemainAfterExit=no
 
 [Install]
 WantedBy=multi-user.target
@@ -213,6 +213,7 @@ EOF
 
 ### Enable and Start Autoshutdown Service
 ```bash
+sudo systemctl daemon-reload
 sudo systemctl enable autoshutdown.service
 sudo systemctl start autoshutdown.service
 ```
