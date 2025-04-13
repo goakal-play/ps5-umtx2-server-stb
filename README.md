@@ -73,9 +73,9 @@ systemctl restart dnsmasq
 EOF
 ```
 
-### Make it executable and enable the service.
+### Make it executable (include update_umtx2.sh) and enable the service 
 ```bash
-sudo chmod +x /usr/local/bin/set-static-ip.sh
+sudo chmod +x /usr/local/bin/set-static-ip.sh /umtx2/update_umtx2.sh
 sudo systemctl daemon-reload
 sudo systemctl enable static-ip.service
 sudo systemctl start static-ip.service
