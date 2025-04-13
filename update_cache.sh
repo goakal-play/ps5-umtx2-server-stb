@@ -23,7 +23,8 @@ update_exploit() {
     echo "[+] Cloning the 'umtx2' repository..."
     git clone https://github.com/idlesauce/umtx2.git umtx2
     echo "[+] Running the appcache manifest generator..."
-    python3 /root/umtx2/appcache_manifest_generator.py
+    cd umtx2
+    python3 appcache_manifest_generator.py
     echo "[✓] Update complete."
     echo "Press Enter to return to the menu..."
     read
@@ -32,7 +33,8 @@ update_exploit() {
 # Function to generate the appcache manifest
 generate_manifest() {
     echo "[+] Running the appcache manifest generator..."
-    python3 /root/umtx2/appcache_manifest_generator.py
+    cd umtx2
+    python3 appcache_manifest_generator.py
     echo "[✓] Generation complete."
     echo "Press Enter to return to the menu..."
     read
