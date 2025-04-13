@@ -161,19 +161,12 @@ Description=Fake DNS Server
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 /root/umtx2/fakedns.py -c dns.conf
-WorkingDirectory=/root/umtx2
+ExecStart=/usr/bin/python3 /root/umtx2/fakedns.py -c /root/dns.conf
+WorkingDirectory=/root
 Restart=always
 
 [Install]
 WantedBy=multi-user.target
-EOF
-```
-### Change dns.conf default IP to static STB IP
-```bash
-cat << 'EOF' | sudo tee dns.conf > /dev/null
-A manuals.playstation.net 10.1.1.1
-A umtx2.tv.box 10.1.1.1
 EOF
 ```
 
